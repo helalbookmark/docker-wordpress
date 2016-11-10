@@ -1,16 +1,14 @@
 web:
-    image: wordpress
-    links:
-     - mysql
-    working_dir: /var/www/html
-    volumes:
-     - ./html:/var/www/html/wp-content
-    environment:
-     - WORDPRESS_DB_PASSWORD=password
-    ports:
-     - "127.0.0.3:8080:80"
-mysql:
-    image: mysql:5.7
-    environment:
-     - MYSQL_ROOT_PASSWORD=password
-     - MYSQL_DATABASE=wordpress
+   image: wordpress
+   links:
+    - db:mysql
+   ports:
+    - '8001:80'
+   working_dir: '/var/www/html'
+   volumes:
+    - "./html:/var/www/html"
+                                                             
+db:
+   image: mysql
+   environment:
+    MYSQL_ROOT_PASSWORD: 'password'
