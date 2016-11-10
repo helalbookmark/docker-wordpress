@@ -12,3 +12,10 @@ db:
    image: mysql
    environment:
     MYSQL_ROOT_PASSWORD: 'password'
+
+myadmin:
+   image: phpmyadmin/phpmyadmin
+   ports:
+    - '8002:80'
+   links:
+    - db:mysql
