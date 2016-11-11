@@ -1,21 +1,25 @@
-web:
-   image: wordpress
-   links:
-    - db:mysql
-   ports:
-    - '8001:80'
-   working_dir: '/var/www/html'
-   volumes:
-    - "./html:/var/www/html"
-                                                             
-db:
+version: '2'
+
+services:
+                                                    
+ db:
    image: mysql
    environment:
     MYSQL_ROOT_PASSWORD: 'password'
 
-myadmin:
+
+ myadmin:
    image: phpmyadmin/phpmyadmin
    ports:
     - '8002:80'
-   links:
-    - db:mysql
+
+ web:
+   image: wordpress
+   ports:
+    - '80:80'
+   working_dir: '/var/www/html'
+   volumes:
+    - "./html:/var/www/html"
+
+         
+
