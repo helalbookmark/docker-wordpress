@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-                                                    
+                                           
  db:
    image: mysql
    environment:
@@ -20,6 +20,9 @@ services:
    working_dir: '/var/www/html'
    volumes:
     - "./html:/var/www/html"
-
-         
-
+   links:
+    - "db:mysql"
+   environment:
+    WORDPRESS_DB_NAME: 'wordpress'
+    WORDPRESS_DB_PASSWORD  : 'password'
+    WORDPRESS_DB_USER : 'root'
